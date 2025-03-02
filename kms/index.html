@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows Editions KMS Activator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        select, input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .hidden {
+            display: none;
+        }
+        .preview {
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>KMS Activator</h1>
+    
+    <label for="windowsVersion">Select Windows Version:</label>
+    <select id="windowsVersion" onchange="updateEditions()">
+        <option value="">--Select--</option>
+        <option value="Vista">Windows Vista</option>
+        <option value="7">Windows 7</option>
+        <option value="8">Windows 8</option>
+        <option value="8.1">Windows 8.1</option>
+        <option value="10">Windows 10</option>
+        <option value="11">Windows 11</option>
+        <option value="Server2008">Windows Server 2008</option>
+        <option value="Server2008R2">Windows Server 2008 R2</option>
+        <option value="Server2012">Windows Server 2012</option>
+        <option value="Server2012R2">Windows Server 2012 R2</option>
+        <option value="Server2016">Windows Server 2016</option>
+        <option value="Server2019">Windows Server 2019</option>
+        <option value="Server2022">Windows Server 2022</option>
+        <option value="Server2025">Windows Server 2025</option>
+    </select>
+
+    <div id="editionContainer" class="hidden">
+        <label for="edition">Select Edition:</label>
+        <select id="edition" onchange="updateKeyEditions()">
+            <!-- Options will be populated based on the selected version -->
+        </select>
+    </div>
+
+    <label for="kmsOption">KMS Server Option:</label>
+    <select id="kmsOption" onchange="toggleKmsInput()">
+        <option value="premade">Premade</option>
+        <option value="custom">Custom</option>
+        <option value="none">None</option>
+    </select>
+
+    <div id="kmsPremade" class="">
+        <label for="kmsNumber">Select KMS Server:</label>
+        <select id="kmsNumber">
+            <option value="KMS1.MSGuides.com">KMS1.MSGuides.com</option>
+            <option value="KMS2.MSGuides.com">KMS2.MSGuides.com</option>
+            <option value="KMS3.MSGuides.com">KMS3.MSGuides.com</option>
+            <option value="KMS4.MSGuides.com">KMS4.MSGuides.com</option>
+            <option value="KMS5.MSGuides.com">KMS5.MSGuides.com</option>
+            <option value="KMS6.MSGuides.com">KMS6.MSGuides.com</option>
+            <option value="KMS7.MSGuides.com">KMS7.MSGuides.com</option>
+            <option value="KMS8.MSGuides.com">KMS8.MSGuides.com</option>
+            <option value="KMS9.MSGuides.com">KMS9.MSGuides.com</option>
+        </select>
+    </div>
+
+    <div id="kmsCustom" class="hidden">
+        <label for="customKms">Custom KMS Server:</label>
+        <input type="text" id="customKms" placeholder="Enter custom KMS server">
+    </div>
+
+    <div id="keyOptionContainer" class="hidden">
+        <label for="keyOption">Key Option:</label>
+        <select id="keyOption" onchange="toggleKeyInput()">
+            <option value="edition">Select from Edition</option>
+            <option value="textbox">Enter Key Manually</option>
+        </select>
+
+        <div id="keyEdition" class="">
+            <label for="keyEditionSelect">Select Key Edition:</label>
+            <select id="keyEditionSelect">
+                <!-- Options will be populated based on the selected version/edition -->
+            </select>
+        </div>
+
+        <div id="keyTextbox" class="hidden">
+            <label for="manualKey">Enter Key:</label>
+            <input type="text" id="manualKey" maxlength="29" placeholder="XXXXX-XXXXX-XXXXX-XXXXX-XXXXX" oninput="formatKey()">
+        </div>
+    </div>
+
+    <button onclick="generateBatchFile()">Generate Batch File</button>
+    <div class="preview" id="batchPreview"></div>
+    <button onclick="copyToClipboard()">Copy to Clipboard</button>
+    <button onclick="downloadBatchFile()">Download Batch File</button>
+</div>
+
+<script>
+    // Generic Windows product keys (KMS client setup keys)
+    const productKeys = {
+        'Vista': {
+            'Home Premium': 'HMPND-DXGJT-C97JM-BPXPY-7VGVT',
+            'Home Premium N': 'DX8R9-BVCGB-PPKRR-8J7T4-TJHTH',
+            'Home Basic': 'D9CRD-R8YWN-47WPJ-TD2J3-DDRFG',
+            'Home Basic N': '7W842-2HCPJ-BC3MJ-B79K6-TD2HQ',
+            'Professional': 'BMHC8-VC37T-V88WK-8DY9K-W8TNH',
+            'Professional N': '2TDKR-WRHP2-H83JR-RQFHF-QQWWJ',
+            'Ultimate': '74YFP-3QFB3-KQT8W-PMXWJ-7M648',
+            'Ultimate N': 'D83YJ-HRDYT-JRQP7-8T9YM-R6HHK',
+            'Enterprise': 'VKK3X-68KWM-X2YGT-QR4M6-4BWMV',
+            'Enterprise N': 'VTC42-BLDR6-WBGBH-TD9SR-RJRQ2'
+        },
+        '7': {
+            'Home Premium': 'HYF8J-CVRMY-CM74G-RPHKF-PW487',
+            'Home Premium N': 'D83PJ-RRKYX-WNTFY-BG8K4-MWGPD',
+            'Home Premium E': '8XPM9-7F9HD-4JJQP-TP64Y-RPFFV',
+            'Professional': 'FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4',
+            'Professional N': 'DMJBF-RD86P-HK42X-XTK4D-XGHD2',
+            'Professional E': 'W82YF-2Q76Y-63HXB-FGJG9-GF7QX',
+            'Enterprise': '33PXH-7Y6KF-2VJC9-XBBR8-HVTHH',
+            'Enterprise N': 'YDRBP-3D83W-TY26F-D46B2-XCKRJ',
+            'Enterprise E': 'C29WB-22CC8-VJ326-GHFJW-H9DH4',
+            'Ultimate': '7YWX9-W3C2V-D46GW-P722P-9CP4D',
+            'Ultimate N': '6JW3N-7Y7J7-KX4JD-V42XB-B6K8P',
+            'Starter': '273P4-GQ8V6-97YYM-9YTHF-DC2VP',
+            'Starter N': 'T7F7P-BTM3W-WFHBR-VQHPM-H7DQT'
+        },
+        '8': {
+            'Home': 'M9Q9P-WNJJT-6PXPY-DWX8H-6XWKK',
+            'Home N': '7B9N3-D94CG-YTVHR-QBPX3-RJP64',
+            'Pro': 'NG4HW-VH26C-733KW-K6F98-J8CK4',
+            'Pro N': 'XCVCF-2NXM9-723PB-MHCB7-2RYQQ',
+            'Pro with Media Center': 'GNBB8-YVD74-QJHX6-27H4K-8QHDG',
+            'Enterprise': '32JNW-9KQ84-P47T8-D8GGY-CWCK7',
+            'Enterprise N': 'JMNMF-RHW7P-DMY6X-RF3DR-X2BQT'
+        },
+        '8.1': {
+            'Home': 'MHF9N-XY6XB-WVXMC-BTDCT-MKKG7',
+            'Home N': 'TT4HM-HN7YT-62K67-RGRQJ-JFFXW',
+            'Pro': 'GCRJD-8NW9H-F2CDX-CCM8D-9D6T9',
+            'Pro N': 'HMCNV-VVBFX-7HMBH-CTY9B-B4FXY',
+            'Pro with Media Center': 'GBFNG-2X3TC-8R27F-RMKYB-JK7QT',
+            'Enterprise': 'MHF9N-XY6XB-WVXMC-BTDCT-MKKG7',
+            'Enterprise N': 'TT4HM-HN7YT-62K67-RGRQJ-JFFXW'
+        },
+        '10': {
+            'Home': 'TX9XD-98N7V-6WMQ6-BX7FG-H8Q99',
+            'Home N': '3KHY7-WNT83-DGQKR-F7HPR-844BM',
+            'Home Single Language': '7HNRX-D7KGG-3K4RQ-4WPJ4-YTDFH',
+            'Home Country Specific': 'PVMJN-6DFY6-9CCP6-7BKTT-D3WVR',
+            'Pro': 'W269N-WFGWX-YVC9B-4J6C9-T83GX',
+            'Pro N': 'MH37W-N47XK-V7XM9-C7227-GCQG9',
+            'Pro Education': '6TP4R-GNPTD-KYYHQ-7B7DP-J447Y',
+            'Pro Education N': 'YVWGF-BXNMC-HTQYQ-CPQ99-66QFC',
+            'Pro for Workstations': 'NRG8B-VKK3Q-CXVCJ-9G2XF-6Q84J',
+            'Pro for Workstations N': '9FNHH-K3HBT-3W4TD-6383H-6XYWF',
+            'Pro for IoT Devices': 'BP7QZ-MJFPT-7NPM7-HW3TJ-TTYH7',
+            'Education': 'NW6C2-QMPVW-D7KKK-3GKT6-VCFB2',
+            'Education N': '2WH4N-8QGBV-H22JP-CT43Q-MDWWJ',
+            'Enterprise': 'NPPR9-FWDCX-D2C8J-H872K-2YT43',
+            'Enterprise N': 'DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4',
+            'Enterprise G': 'YYVX9-NTFWV-6MDM3-9PT4T-4M68B',
+            'Enterprise G N': '44RPN-FTY23-9VTTB-MP9BX-T84FV',
+            'Enterprise LTSC 2019': 'M7XTQ-FN8P6-TTKYV-9D4CC-J462D',
+            'Enterprise N LTSC 2019': '92NFX-8DJQP-P6BBQ-THF9C-7CG2H',
+            'IoT Enterprise LTSC 2019': 'JQBM6-8NYQX-CGKWK-4FT9R-YTDVQ'
+        },
+        '11': {
+            'Home': 'TX9XD-98N7V-6WMQ6-BX7FG-H8Q99',
+            'Home N': '3KHY7-WNT83-DGQKR-F7HPR-844BM',
+            'Home Single Language': '7HNRX-D7KGG-3K4RQ-4WPJ4-YTDFH',
+            'Home Country Specific': 'PVMJN-6DFY6-9CCP6-7BKTT-D3WVR',
+            'Pro': 'W269N-WFGWX-YVC9B-4J6C9-T83GX',
+            'Pro N': 'MH37W-N47XK-V7XM9-C7227-GCQG9',
+            'Pro Education': '6TP4R-GNPTD-KYYHQ-7B7DP-J447Y',
+            'Pro Education N': 'YVWGF-BXNMC-HTQYQ-CPQ99-66QFC',
+            'Pro for Workstations': 'NRG8B-VKK3Q-CXVCJ-9G2XF-6Q84J',
+            'Pro for Workstations N': '9FNHH-K3HBT-3W4TD-6383H-6XYWF',
+            'Education': 'NW6C2-QMPVW-D7KKK-3GKT6-VCFB2',
+            'Education N': '2WH4N-8QGBV-H22JP-CT43Q-MDWWJ',
+            'Enterprise': 'NPPR9-FWDCX-D2C8J-H872K-2YT43',
+            'Enterprise N': 'DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4',
+            'Enterprise G': 'YYVX9-NTFWV-6MDM3-9PT4T-4M68B',
+            'Enterprise G N': '44RPN-FTY23-9VTTB-MP9BX-T84FV',
+            'Enterprise LTSC 2021': 'M7XTQ-FN8P6-TTKYV-9D4CC-J462D',
+            'Enterprise N LTSC 2021': '92NFX-8DJQP-P6BBQ-THF9C-7CG2H',
+            'IoT Enterprise LTSC 2021': 'QPM6N-7J2WJ-P88HH-P3YRH-YY74H'
+        },
+        'Server2008': {
+            'Web': 'WYR28-R7TFJ-3X2YQ-YCY4H-M249D',
+            'Standard': 'TM24T-X9RMF-VWXK6-X8JC9-BFGM2',
+            'Standard without Hyper-V': 'W7VD6-7JFBR-RX26B-YKQ3Y-6FFFJ',
+            'Enterprise': 'YQGMW-MPWTJ-34KDK-48M3W-X4Q6V',
+            'Enterprise without Hyper-V': '39BXF-X8Q23-P2WWT-38T2F-G3FPG',
+            'Datacenter': '7M67G-PC374-GR742-YH8V4-TCBY3',
+            'Datacenter without Hyper-V': '22XQ2-VRXRG-P8D42-K34TD-G3QQC',
+            'Itanium': '4DWFP-JF3DJ-B7DTH-78FJB-PDRHK'
+        },
+        'Server2008R2': {
+            'Web': '6TPJF-RBVHG-WBW2R-86QPH-6RTM4',
+            'HPC': 'TT8MH-CG224-D3D7Q-498W2-9QCTX',
+            'Standard': 'YC6KT-GKW9T-YTKYR-T4X34-R7VHC',
+            'Enterprise': '489J6-VHDMP-X63PK-3K798-CPX3Y',
+            'Datacenter': '74YFP-3QFB3-KQT8W-PMXWJ-7M648',
+            'Itanium': 'GT63C-RJFQ3-4GMB6-BRFB9-CB83V'
+        },
+        'Server2012': {
+            'Core': 'BN3D2-R7TKB-3YPBD-8DRP2-27GG4',
+            'Core N': '8N2M2-HWPGY-7PGT9-HGDD8-GVGGY',
+            'Core Single Language': '2WN2H-YGCQR-KFX6K-CD6TF-84YXQ',
+            'Core Country Specific': '4K36P-JN4VD-GDC6V-KDT89-DYFKP',
+            'Server Standard': 'XC9B7-NBPP2-83J2H-RHMBY-92BT4',
+            'Server Datacenter': '48HP8-DN98B-MYWDG-T2DCC-8W83P',
+            'Server Multi-Point Standard': 'HM7DN-YVMH3-46JC3-XYTG7-CYQJJ',
+            'Server Multi-Point Premium': 'XNH6W-2V9GX-RGJ4K-Y8X6F-QGJ2G'
+        },
+        'Server2012R2': {
+            'Standard': 'D2N9P-3P6X9-2R39C-7RTCD-MDVJX',
+            'Datacenter': 'W3GGN-FT8W3-Y4M27-J84CP-Q3VJ9',
+            'Essentials': 'KNC87-3J2TX-XB4WP-VCPJV-M4FWM'
+        },
+        'Server2016': {
+            'Standard': 'WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY',
+            'Datacenter': 'CB7KF-BWN84-R7R2Y-793K2-8XDDG',
+            'Essentials': 'JCKRF-N37P4-C2D82-9YXRT-4M63B'
+        },
+        'Server2019': {
+            'Standard': 'N69G4-B89J2-4G8F4-WWYCC-J464C',
+            'Datacenter': 'WMDGN-G9PQG-XVVXX-R3X43-63DFG',
+            'Essentials': 'WVDHN-86M7X-466P6-VHXV7-YY726'
+        },
+        'Server2022': {
+            'Standard': 'VDYBN-27WPP-V4HQT-9VMD4-VMK7H',
+            'Datacenter': 'WX4NM-KYWYW-QJJR4-XV3QB-6VM33',
+            'Datacenter Azure Edition': 'NTBV8-9K7Q8-V27C6-M2BTV-KHMXV',
+            'Standard Azure Edition': 'MFY9F-XBN2F-TYFMP-CCV49-RMYVH'
+        },
+        'Server2025': {
+            'Standard': 'MFY9F-XBN2F-TYFMP-CCV49-RMYVH',
+            'Datacenter': 'NTBV8-9K7Q8-V27C6-M2BTV-KHMXV',
+            'Datacenter Azure Edition': 'YBNHT-W9NMG-CR7MR-D8D2X-KHWMT',
+            'Standard Azure Edition': '2TMWG-NT8VQ-Y49BY-QP9H3-9DMK7'
+        }
+    };
+
+    // Initialize the interface
+    window.onload = function() {
+        toggleKmsInput();
+        toggleKeyInput();
+    };
+
+    function updateEditions() {
+        const version = document.getElementById('windowsVersion').value;
+        const editionSelect = document.getElementById('edition');
+        const editionContainer = document.getElementById('editionContainer');
+        const keyOptionContainer = document.getElementById('keyOptionContainer');
+        
+        editionSelect.innerHTML = ''; // Clear previous options
+
+        if (version === '') {
+            editionContainer.classList.add('hidden');
+            keyOptionContainer.classList.add('hidden');
+            return;
+        }
+
+        if (productKeys[version]) {
+            Object.keys(productKeys[version]).forEach(edition => {
+                const option = document.createElement('option');
+                option.value = edition;
+                option.textContent = edition;
+                editionSelect.appendChild(option);
+            });
+            editionContainer.classList.remove('hidden');
+            keyOptionContainer.classList.remove('hidden');
+            updateKeyEditions();
+        } else {
+            editionContainer.classList.add('hidden');
+            keyOptionContainer.classList.add('hidden');
+        }
+    }
+
+    function updateKeyEditions() {
+        const version = document.getElementById('windowsVersion').value;
+        const edition = document.getElementById('edition').value;
+        const keyEditionSelect = document.getElementById('keyEditionSelect');
+        keyEditionSelect.innerHTML = ''; // Clear previous options
+
+        if (productKeys[version] && Object.keys(productKeys[version]).length > 0) {
+            for (const [editionName, key] of Object.entries(productKeys[version])) {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = `${editionName}: ${key}`;
+                keyEditionSelect.appendChild(option);
+                
+                // Set the selected option to match the current edition if possible
+                if (editionName === edition) {
+                    option.selected = true;
+                }
+            }
+        }
+    }
+
+    function toggleKmsInput() {
+        const option = document.getElementById('kmsOption').value;
+        document.getElementById('kmsPremade').classList.toggle('hidden', option !== 'premade');
+        document.getElementById('kmsCustom').classList.toggle('hidden', option !== 'custom');
+    }
+
+    function toggleKeyInput() {
+        const option = document.getElementById('keyOption').value;
+        document.getElementById('keyEdition').classList.toggle('hidden', option !== 'edition');
+        document.getElementById('keyTextbox').classList.toggle('hidden', option !== 'textbox');
+    }
+
+    function formatKey() {
+        const input = document.getElementById('manualKey');
+        // Remove all non-alphanumeric characters
+        let value = input.value.replace(/[^A-Z0-9]/gi, '').toUpperCase();
+        
+        // Format with hyphens every 5 characters
+        if (value.length > 0) {
+            value = value.match(/.{1,5}/g).join('-');
+        }
+        
+        // Make sure we don't exceed our max length (29 chars with hyphens)
+        if (value.length > 29) {
+            value = value.substring(0, 29);
+        }
+        
+        input.value = value;
+    }
+
+    function generateBatchFile() {
+        const windowsVersion = document.getElementById('windowsVersion').value;
+        
+        if (!windowsVersion) {
+            alert("Please select a Windows version first!");
+            return;
+        }
+        
+        const editionSelect = document.getElementById('edition');
+        const edition = editionSelect.value;
+        
+        let key;
+        if (document.getElementById('keyOption').value === 'textbox') {
+            key = document.getElementById('manualKey').value;
+            if (!key || key.length < 29) {
+                alert("Please enter a valid product key!");
+                return;
+            }
+        } else {
+            key = document.getElementById('keyEditionSelect').value;
+        }
+        
+        const kmsOption = document.getElementById('kmsOption').value;
+        let kmsServer = '';
+
+        if (kmsOption === 'premade') {
+            kmsServer = document.getElementById('kmsNumber').value;
+        } else if (kmsOption === 'custom') {
+            kmsServer = document.getElementById('customKms').value;
+            if (!kmsServer && kmsOption === 'custom') {
+                alert("Please enter a custom KMS server!");
+                return;
+            }
+        } else {
+            kmsServer = 'None';
+        }
+
+        let batchContent = `@echo off\n`;
+        batchContent += `title Windows ${windowsVersion} ${edition} Activator\n`;
+        batchContent += `echo =====================================================\n`;
+        batchContent += `echo Windows ${windowsVersion} ${edition} KMS Activation\n`;
+        batchContent += `echo =====================================================\n\n`;
+        batchContent += `echo Installing KMS client key...\n`;
+        batchContent += `slmgr /ipk ${key}\n\n`;
+        
+        if (kmsOption !== 'none') {
+            batchContent += `echo Setting KMS server to ${kmsServer}...\n`;
+            batchContent += `slmgr /skms ${kmsServer}\n\n`;
+        }
+        
+        batchContent += `echo Activating Windows...\n`;
+        batchContent += `slmgr /ato\n\n`;
+        batchContent += `echo Displaying license information...\n`;
+        batchContent += `slmgr /xpr\n\n`;
+        batchContent += `echo Activation complete. Press any key to exit.\n`;
+        batchContent += `pause > nul\n`;
+        batchContent += `exit /b`;
+
+        document.getElementById('batchPreview').textContent = batchContent;
+    }
+
+    function copyToClipboard() {
+        const batchContent = document.getElementById('batchPreview').textContent;
+        if (!batchContent) {
+            alert('Please generate a batch file first!');
+            return;
+        }
+        
+        navigator.clipboard.writeText(batchContent).then(() => {
+            alert('Batch file content copied to clipboard!');
+        }).catch(err => {
+            console.error('Could not copy text: ', err);
+            alert('Failed to copy to clipboard. Please try again or select the text manually.');
+        });
+    }
+
+    function downloadBatchFile() {
+        const batchContent = document.getElementById('batchPreview').textContent;
+        if (!batchContent) {
+            alert('Please generate a batch file first!');
+            return;
+        }
+        
+        const windowsVersion = document.getElementById('windowsVersion').value;
+        const edition = document.getElementById('edition').value;
+        const filename = `Windows_${windowsVersion}_${edition}_Activator.bat`.replace(/ /g, '_');
+        
+        const blob = new Blob([batchContent], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = filename;
+        link.click();
+    }
+</script>
+
+</body>
+</html>
