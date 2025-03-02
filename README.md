@@ -11,3 +11,5 @@ KMS Activator     |    Perfect    | True | 800/1000 | Usable |
 
 # KMS activator tutorial
 Pick your edition and more and generate. Credits to [MSGuides! ❤️](https://www.MSGuides.com)
+<br>
+Link: ElectricBoy2023.github.io/kms
