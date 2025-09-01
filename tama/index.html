@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fake Tama Utils</title>
+  <style>
+    :root {
+      --bg: #0f1220;
+      --card: #171a2b;
+      --muted: #8b93a7;
+      --text: #e8ecf3;
+      --accent: #6ad29f;
+      --accent-2: #6aa3d2;
+      --danger: #ff6b6b;
+      --warning: #ffd166;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+      background: radial-gradient(1200px 800px at 20% -10%, #1b2040 0%, #0f1220 45%, #0b0e19 100%);
+      color: var(--text);
+      min-height: 100dvh;
+      display: grid;
+      place-items: start center;
+    }
+    .wrap {
+      width: min(980px, 100%);
+      padding: 24px clamp(16px, 3vw, 32px);
+    }
+    header {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      margin-bottom: 18px;
+    }
+    h1 {
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: .5px;
+      font-size: clamp(22px, 3.2vw, 34px);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .tag {
+      font-size: 12px; color: var(--muted); opacity: .9;
+    }
+    .grid { display: grid; gap: 18px; grid-template-columns: repeat(12, 1fr); }
+    .card { grid-column: span 12; background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 120%), var(--card); border: 1px solid rgba(255,255,255,.06); box-shadow: var(--shadow); border-radius: var(--radius); padding: clamp(16px, 2.5vw, 24px); }
+    @media (min-width: 840px) { .card.half { grid-column: span 6; } }
+
+    .card h2 { margin: 0 0 8px; font-size: clamp(16px, 2.2vw, 22px); }
+    .sub { margin: 0 0 14px; color: var(--muted); font-size: 13px; }
+
+    label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px; }
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      background: #0e1120; color: var(--text);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 16px; letter-spacing: .5px;
+      outline: none;
+      transition: border-color .2s, transform .05s ease;
+    }
+    input:focus { border-color: #7bd6ff; }
+    button {
+      appearance: none; border: 0; cursor: pointer;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), transparent 140%), #1f2440;
+      color: var(--text);
+      padding: 10px 14px; border-radius: 12px; font-weight: 700; letter-spacing: .3px;
+      transition: transform .06s ease, filter .15s ease;
+    }
+    button:hover { filter: brightness(1.1); }
+    button:active { transform: translateY(1px) scale(.995); }
+    .btn-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+    .pill { display:inline-flex; align-items:center; gap: 8px; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.06); color: var(--muted); font-size: 12px; }
+
+    .status { margin-top: 10px; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,.06); background: rgba(0,0,0,.3); font-weight: 700; letter-spacing: .4px; }
+    .ok    { background: linear-gradient(180deg, rgba(106,210,159,.22), rgba(0,0,0,.1)); border-color: rgba(106,210,159,.45); }
+    .bad   { background: linear-gradient(180deg, rgba(255,107,107,.22), rgba(0,0,0,.1)); border-color: rgba(255,107,107,.5); }
+    .warn  { background: linear-gradient(180deg, rgba(255,209,102,.22), rgba(0,0,0,.1)); border-color: rgba(255,209,102,.4); }
+
+    .codes { font-family: ui-monospace, SF Mono, Menlo, Consolas, monospace; background: #0b0e19; border: 1px dashed rgba(255,255,255,.12); padding: 12px; border-radius: 12px; min-height: 80px; white-space: pre-wrap; word-break: break-word; }
+
+    .fade-in { animation: fade .25s ease-out both; }
+    @keyframes fade { from { opacity: 0; transform: translateY(-2px); } to { opacity: 1; transform: translateY(0); } }
+
+    footer { margin-top: 16px; text-align: center; color: var(--muted); font-size: 12px; }
+    .link { color: #9ad1ff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>
+        🐣 Fake Tama Utils
+        <span class="tag">Digit sum = 12</span>
+      </h1>
+      <div class="pill" id="totalPill" title="Count of all possible 3‑digit codes that sum to 12">Total: …</div>
+    </header>
+
+    <div class="grid">
+      <!-- Code Validator -->
+      <section class="card half" aria-labelledby="val-h">
+        <h2 id="val-h">Code Validator</h2>
+        <p class="sub">A code is <strong>VALID</strong> if the sum of its 3 digits equals <strong>12</strong>. Leading zeros are allowed (e.g., 003).</p>
+        <label for="val">Code (format XXX, digits only)</label>
+        <div class="btn-row">
+          <input id="val" type="text" inputmode="numeric" autocomplete="off" placeholder="e.g. 147" maxlength="3" aria-describedby="val-help" />
+          <button id="checkBtn" title="Check the code">Check</button>
+          <button id="clearBtn" title="Clear input">Clear</button>
+        </div>
+        <div id="val-help" class="pill" style="margin-top:8px">Tip: press Enter to check</div>
+        <div id="valStatus" class="status warn" role="status" aria-live="polite" style="display:none"></div>
+      </section>
+
+      <!-- Code Maker -->
+      <section class="card half" aria-labelledby="make-h">
+        <h2 id="make-h">Code Maker</h2>
+        <p class="sub">Generate random unique codes (3 digits) where digits sum to 12.</p>
+        <label for="count">Codes to make (1 … <span id="maxCountLabel">?</span>)</label>
+        <div class="btn-row">
+          <input id="count" type="number" min="1" step="1" value="3" />
+          <button id="makeBtn" title="Generate codes">Make</button>
+          <button id="copyBtn" title="Copy the list">Copy</button>
+          <button id="downloadBtn" title="Download as TXT">Download .txt</button>
+        </div>
+        <div id="makeStatus" class="status warn" style="display:none"></div>
+        <div id="out" class="codes" aria-live="polite"></div>
+      </section>
+
+      <!-- Explorer -->
+      <section class="card" aria-labelledby="explore-h">
+        <h2 id="explore-h">Explore All Valid Codes</h2>
+        <p class="sub">Browse the full set. Click a code to copy.</p>
+        <div id="chips" class="btn-row" style="flex-wrap: wrap; gap: 8px"></div>
+      </section>
+    </div>
+
+    <footer>
+      Built for fun. No affiliation with Tamagotchi. — <a class="link" href="#" id="exportJSON">Export JSON</a>
+    </footer>
+  </div>
+
+  <script>
+    // --- Utilities ---
+    const pad3 = n => String(n).padStart(3, '0');
+    const sumDigits = s => s.split('').reduce((a, d) => a + Number(d || 0), 0);
+    const onlyDigits = s => s.replace(/\D+/g, '');
+
+    // Precompute all valid codes once
+    const ALL = Array.from({length:1000}, (_,i)=>pad3(i)).filter(c => sumDigits(c) === 12);
+    const TOTAL = ALL.length; // should be 73
+
+    // Wire up static counts
+    document.getElementById('totalPill').textContent = `Total: ${TOTAL}`;
+    document.getElementById('maxCountLabel').textContent = TOTAL;
+
+    // --- Validator ---
+    const valInput = document.getElementById('val');
+    const valStatus = document.getElementById('valStatus');
+
+    function showStatus(el, msg, cls) {
+      el.style.display = 'block';
+      el.className = `status ${cls} fade-in`;
+      el.textContent = msg;
+    }
+
+    function checkCode(raw) {
+      const cleaned = pad3(onlyDigits(raw).slice(0,3));
+      if (!cleaned || cleaned.length < 3) {
+        showStatus(valStatus, 'Enter 3 digits (format XXX).', 'warn');
+        return;
+      }
+      valInput.value = cleaned;
+      const s = sumDigits(cleaned);
+      if (s === 12) {
+        showStatus(valStatus, `YES! ${cleaned} is VALID (digit sum = 12).`, 'ok');
+      } else {
+        showStatus(valStatus, `SORRY, THIS CODE IS INVALID. ${cleaned} → ${cleaned.split('').join(' + ')} = ${s}`, 'bad');
+      }
+    }
+
+    document.getElementById('checkBtn').addEventListener('click', () => checkCode(valInput.value));
+    document.getElementById('clearBtn').addEventListener('click', () => { valInput.value=''; valStatus.style.display='none'; valInput.focus(); });
+    valInput.addEventListener('keydown', e => { if (e.key === 'Enter') checkCode(valInput.value); });
+    valInput.addEventListener('input', e => { e.target.value = onlyDigits(e.target.value).slice(0,3); });
+
+    // --- Maker ---
+    const out = document.getElementById('out');
+    const makeStatus = document.getElementById('makeStatus');
+
+    function makeCodes(n) {
+      const want = Math.max(1, Math.min(TOTAL, Math.floor(n || 0)));
+      if (!Number.isFinite(want)) return [];
+      // Random sample without replacement
+      const pool = [...ALL];
+      for (let i = pool.length - 1; i > 0; i--) { // shuffle
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+      return pool.slice(0, want).sort();
+    }
+
+    function renderList(list) {
+      out.textContent = list.join("\n");
+      out.classList.add('fade-in');
+      setTimeout(()=>out.classList.remove('fade-in'), 260);
+    }
+
+    document.getElementById('makeBtn').addEventListener('click', () => {
+      const n = Number(document.getElementById('count').value);
+      if (!n || n < 1) {
+        showStatus(makeStatus, 'Enter a positive number.', 'warn');
+        return;
+      }
+      if (n > TOTAL) {
+        showStatus(makeStatus, `Capped at ${TOTAL} unique codes.`, 'warn');
+      } else {
+        makeStatus.style.display = 'none';
+      }
+      const list = makeCodes(n);
+      renderList(list);
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      const text = out.textContent.trim();
+      if (!text) { showStatus(makeStatus, 'Nothing to copy yet. Click Make first.', 'warn'); return; }
+      try { await navigator.clipboard.writeText(text); showStatus(makeStatus, 'Copied to clipboard.', 'ok'); }
+      catch { showStatus(makeStatus, 'Clipboard blocked by browser.', 'warn'); }
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const text = out.textContent.trim();
+      if (!text) { showStatus(makeStatus, 'Nothing to download yet. Click Make first.', 'warn'); return; }
+      const blob = new Blob([text + "\n"], {type: 'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = Object.assign(document.createElement('a'), { href: url, download: 'fake-tama-codes.txt' });
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2500);
+      showStatus(makeStatus, 'Downloaded file: fake-tama-codes.txt', 'ok');
+    });
+
+    // Explorer chips (click to copy)
+    const chips = document.getElementById('chips');
+    function chip(code) {
+      const b = document.createElement('button');
+      b.textContent = code; b.setAttribute('title', `Copy ${code}`);
+      b.style.background = 'linear-gradient(180deg, rgba(255,255,255,.08), transparent 140%), #171c36';
+      b.style.border = '1px solid rgba(255,255,255,.07)';
+      b.style.padding = '8px 10px'; b.style.borderRadius = '999px'; b.style.fontFamily = 'ui-monospace, SF Mono, Menlo, Consolas, monospace'; b.style.fontWeight = '800';
+      b.addEventListener('click', async () => { try { await navigator.clipboard.writeText(code); b.textContent = '✓ ' + code; setTimeout(()=> b.textContent = code, 600); } catch {}
+      });
+      return b;
+    }
+    ALL.forEach(c => chips.appendChild(chip(c)));
+
+    // Export JSON link
+    document.getElementById('exportJSON').addEventListener('click', (e) => {
+      e.preventDefault();
+      const blob = new Blob([JSON.stringify({ total: TOTAL, codes: ALL }, null, 2)], {type: 'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = Object.assign(document.createElement('a'), { href: url, download: 'fake-tama-codes.json' });
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2500);
+    });
+
+    // Demo: prefill example
+    valInput.value = '082';
+  </script>
+</body>
+</html>
