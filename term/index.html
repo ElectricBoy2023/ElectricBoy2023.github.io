@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS Terminal</title>
+<style>
+:root { --scale: calc(1 + (100vw / 1200)); }
+
+body {
+    margin:0;
+    background:#111; /* dark background */
+    color:#eee; /* normal text white-ish */
+    font-family: "Courier New", monospace; /* monospace font */
+    font-size: calc(14px * var(--scale));
+    display:flex;
+    flex-direction:column;
+    height:100vh;
+}
+
+#output { flex:1; overflow-y:auto; padding:10px; white-space:pre-wrap; }
+
+.line { margin:4px 0; }
+
+.input-area { border-top:1px solid #eee; display:flex; flex-direction:column; padding:10px; }
+.prompt { margin-right:6px; }
+
+textarea {
+    width:100%;
+    resize:none;
+    background:#111;
+    border:none;
+    color:#eee;
+    font-family:"Courier New", monospace;
+    font-size:inherit;
+    outline:none;
+    min-height:20px;
+    line-height:1.4em;
+}
+
+.result { color:#4fc3f7; } /* cyan for results */
+.error { color:#ff5252; } /* red for errors */
+</style>
+</head>
+<body>
+
+<div id="output"></div>
+
+<div class="input-area">
+<span class="prompt">></span>
+<textarea id="cmd" autofocus autocomplete="off" rows="1"></textarea>
+</div>
+
+<script>
+const output = document.getElementById("output");
+const cmd = document.getElementById("cmd");
+
+let history = [];
+let historyIndex = 0;
+
+function print(text, type="line") {
+    let div = document.createElement("div");
+    div.className = "line " + type;
+    div.textContent = text;
+    output.appendChild(div);
+    output.scrollTop = output.scrollHeight;
+}
+
+// Hijack console.log to terminal
+const oldLog = console.log;
+console.log = function(...args) {
+    print(args.join(" "), "result");
+    oldLog.apply(console, args);
+};
+
+function execute(code) {
+    if(code.trim() === "") return;
+
+    print("> " + code);
+    history.push(code);
+    historyIndex = history.length;
+
+    if(code === "clear") { output.innerHTML = ""; return; }
+
+    try {
+        let result = Function('"use strict";return (' + code + ')')();
+        if(result !== undefined) print(result, "result");
+    } catch(e) {
+        print(e.message, "error");
+    }
+}
+
+// Auto-resize textarea for multi-line
+function adjustHeight() {
+    cmd.style.height = 'auto';
+    cmd.style.height = (cmd.scrollHeight) + 'px';
+}
+
+cmd.addEventListener("input", adjustHeight);
+
+cmd.addEventListener("keydown", e => {
+    if(e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        execute(cmd.value);
+        cmd.value = "";
+        adjustHeight();
+    }
+    else if(e.key === "ArrowUp") {
+        if(historyIndex > 0) { historyIndex--; cmd.value = history[historyIndex]; adjustHeight(); }
+    }
+    else if(e.key === "ArrowDown") {
+        if(historyIndex < history.length - 1) { historyIndex++; cmd.value = history[historyIndex]; adjustHeight(); }
+        else { cmd.value = ""; adjustHeight(); }
+    }
+});
+
+print("JS Terminal Ready (Dark-White Theme)");
+print("Shift+Enter for new line, Enter to run");
+print("console.log('Hello world')");
+print("2+2");
+print("clear");
+</script>
+
+</body>
+</html>
