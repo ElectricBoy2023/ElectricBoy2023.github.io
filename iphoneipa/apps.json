@@ -1,0 +1,9 @@
+[
+  {
+    "name": "KSign",
+    "version": "1.6",
+    "description": "A cleaner ESign. App for codesigning IPA files.",
+    "icon": "https://github.com/user-attachments/assets/986892f9-c32f-448d-a24e-ba8659203fbf",
+    "plist": "ksign.plist"
+  }
+]
