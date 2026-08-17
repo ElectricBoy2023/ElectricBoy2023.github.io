@@ -1,4 +1,4 @@
-0ƒ§İ	*†H†÷ ƒ§Í0ƒ§È10	`†He0ƒ¤ï	*†H†÷ ƒ¤ßƒ¤Ú<?xml version="1.0" encoding="UTF-8"?>
+0ƒ¢4	*†H†÷ ƒ¢$0ƒ¢10	`†He0ƒŸF	*†H†÷ ƒŸ6ƒŸ1<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -5159,56 +5159,6 @@
 			<key>URL</key>
 			<string>https://sign.ipasign.cc/</string>
 		</dict>
-		<dict>
-			<key>DNSSettings</key>
-			<dict>
-				<key>DNSProtocol</key>
-				<string>HTTPS</string>
-				<key>ServerAddresses</key>
-				<array>
-					<string>1.1.1.1</string>
-					<string>1.0.0.1</string>
-				</array>
-				<key>ServerURL</key>
-				<string>https://vevrl9air2.cloudflare-gateway.com/dns-query</string>
-				<key>SupplementalMatchDomains</key>
-				<array>
-					<string>certs.apple.com</string>
-					<string>crl.apple.com</string>
-					<string>ocsp.apple.com</string>
-					<string>ocsp2.apple.com</string>
-					<string>valid.apple.com</string>
-					<string>crl3.digicert.com</string>
-					<string>crl4.digicert.com</string>
-					<string>ocsp.digicert.com</string>
-					<string>ocsp.digicert.cn</string>
-					<string>analytics.apple.com</string>
-				</array>
-			</dict>
-			<key>OnDemandRules</key>
-			<array>
-				<dict>
-					<key>Action</key>
-					<string>Connect</string>
-					<key>InterfaceTypeMatch</key>
-					<string>WiFi</string>
-				</dict>
-				<dict>
-					<key>Action</key>
-					<string>Connect</string>
-					<key>InterfaceTypeMatch</key>
-					<string>Cellular</string>
-				</dict>
-			</array>
-			<key>PayloadIdentifier</key>
-			<string>com.apple.dnsSettings.managed.a6cba8c5-205b-44ea-ab41-84b1e001f7a7</string>
-			<key>PayloadType</key>
-			<string>com.apple.dnsSettings.managed</string>
-			<key>PayloadUUID</key>
-			<string>a6cba8c5-205b-44ea-ab41-84b1e001f7a7</string>
-			<key>PayloadVersion</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>PayloadDescription</key>
 	<string>Install to gain useful perks by Winverse. Only for iOS.</string>
@@ -5229,4 +5179,6 @@
 </dict>
 </plist>
  ‚Ù0‚Õ0‚> _úĞÀÆAkÓÑgO0	*†H†÷ 0)1'0%U W O J T E K - P C \ w o j c i0260523183108Z270524003108Z0)1'0%U W O J T E K - P C \ w o j c i0Ÿ0	*†H†÷  0‰ ¥·üƒÂzø9›Oß2>LtÚÓ:&}Ç™Ô¡â)ë
-?ÙlßçU.®.ä`j?†QfXI˜Ş‹É¡İíY¤\¯M;ƒ6ue@)¹¢ÅŸ4¨Ù­‘HÌSêÆôÊ#Cï÷ô!YEV%å—İ5-QÌÉJ4%DK…Ëô 0	*†H†÷  L8ˆfg•ñÌÒ¨c¯(Z1âÚ<Å+V`Å ò¯P¤-e+@»¯ä3R-olàªåWY"Ç9ŞùÚ¡i~ÀNvÂü0QöP¿…mt¹âîäp:¹.5÷V‹>"ıP+ÈävÁ‚ñ_A=.ËHô=JeıÁ…¹1â0ß0=0)1'0%U W O J T E K - P C \ w o j c i_úĞÀÆAkÓÑgO0	`†He0	*†H†÷€cĞ®naCşVÊ-ûãe¨í!ƒ§"á½„ïô“[g§<'ìÒGyò÷bCšÔ6K–Si^|_%ô¿üD!âd7PäŸÃ E¸¿¬FçÅÊ2ÖmñÃw“ÏÓğ°¨5ğüTÉôLŠË=3j›ÌÀré)–—£·ÇrŞˆÔ˜
+?ÙlßçU.®.ä`j?†QfXI˜Ş‹É¡İíY¤\¯M;ƒ6ue@)¹¢ÅŸ4¨Ù­‘HÌSêÆôÊ#Cï÷ô!YEV%å—İ5-QÌÉJ4%DK…Ëô 0	*†H†÷  L8ˆfg•ñÌÒ¨c¯(Z1âÚ<Å+V`Å ò¯P¤-e+@»¯ä3R-olàªåWY"Ç9ŞùÚ¡i~ÀNvÂü0QöP¿…mt¹âîäp:¹.5÷V‹>"ıP+ÈävÁ‚ñ_A=.ËHô=JeıÁ…¹1â0ß0=0)1'0%U W O J T E K - P C \ w o j c i_úĞÀÆAkÓÑgO0	`†He0	*†H†÷€ë^Ái"zšø$Ih‰öXe!Œä;ßD¿8$¨—¹èß[O,%šıÈRbæ^­
+v"Vò£ÊÁpÎÙ(àÜQë°ayÉSÎ)ô”Œ#Åœö¬,«'ÖÒJxu 3Õ{ ¼ÀÌÑg@:«‹	ıÔiÀ
+JÖº
