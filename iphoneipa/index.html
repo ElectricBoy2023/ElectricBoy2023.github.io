@@ -1,3 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>iVerse Store</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f2f2f7;
+            color: #111;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid #ddd;
+            padding: 18px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .header-inner {
+            max-width: 1000px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 25px;
+        }
+
+        .subtitle {
+            color: #777;
+            font-size: 13px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 18px;
+        }
+
+        .app {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .app-top {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            object-fit: cover;
+            background: #ddd;
+        }
+
+        .app-name {
+            font-size: 19px;
+            font-weight: 600;
+        }
+
+        .description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.45;
+            min-height: 40px;
+        }
+
+        .version {
+            color: #777;
+            font-size: 14px;
+            margin-top: 3px;
+        }
+
+        .get {
+            border: 0;
+            border-radius: 12px;
+            padding: 11px;
+            background: #007aff;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .get:active {
+            transform: scale(0.98);
+        }
+
+        .empty {
+            text-align: center;
+            color: #777;
+            padding: 50px;
+        }
+
+        footer {
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+            padding: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+        <div class="logo">iV</div>
+
+        <div>
+            <h1>iVerse Store</h1>
+            <div class="subtitle">Your IPA collection</div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div id="apps" class="store-grid">
+        <div class="empty">Loading apps...</div>
+    </div>
+</main>
+
+<footer>
+    iVerse Store
+</footer>
+
 <script>
 async function loadApps() {
     const container = document.getElementById("apps");
@@ -95,3 +265,6 @@ async function loadApps() {
 
 loadApps();
 </script>
+
+</body>
+</html>
