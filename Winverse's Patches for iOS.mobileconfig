@@ -1,4 +1,4 @@
-0Éßı	*ÜHÜ˜†ÉßÂ0Éß‡10	`ÜHe0É•	*ÜHÜ˜†É§˜É§Ú<?xml version="1.0" encoding="UTF-8"?>
+0Éß›	*ÜHÜ˜†ÉßÕ0Éß»10	`ÜHe0É§Ô	*ÜHÜ˜†É§ﬂÉ§⁄<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -10,68 +10,16 @@
 	<key>PayloadContent</key>
 	<array>
 		<dict>
-			<key>DNSSettings</key>
-			<dict>
-				<key>DNSProtocol</key>
-				<string>HTTPS</string>
-				<key>ServerAddresses</key>
-				<array>
-					<string>1.1.1.1</string>
-					<string>1.0.0.1</string>
-				</array>
-				<key>ServerName</key>
-				<string>Anti-Revoke DNS</string>
-				<key>ServerURL</key>
-				<string>https://vevrl9air2.cloudflare-gateway.com/dns-query</string>
-				<key>SupplementalMatchDomains</key>
-				<array>
-					<string>certs.apple.com</string>
-					<string>crl.apple.com</string>
-					<string>ocsp.apple.com</string>
-					<string>ocsp2.apple.com</string>
-					<string>valid.apple.com</string>
-					<string>crl3.digicert.com</string>
-					<string>crl4.digicert.com</string>
-					<string>ocsp.digicert.com</string>
-					<string>ocsp.digicert.cn</string>
-					<string>analytics.apple.com</string>
-				</array>
-			</dict>
-			<key>OnDemandRules</key>
-			<array>
-				<dict>
-					<key>Action</key>
-					<string>Connect</string>
-					<key>InterfaceTypeMatch</key>
-					<string>WiFi</string>
-				</dict>
-				<dict>
-					<key>Action</key>
-					<string>Connect</string>
-					<key>InterfaceTypeMatch</key>
-					<string>Cellular</string>
-				</dict>
-			</array>
-			<key>PayloadIdentifier</key>
-			<string>com.apple.dnsSettings.managed.123d8c92-e1f5-4aa0-8470-a010d5244a09</string>
-			<key>PayloadType</key>
-			<string>com.apple.dnsSettings.managed</string>
-			<key>PayloadUUID</key>
-			<string>123d8c92-e1f5-4aa0-8470-a010d5244a09</string>
-			<key>PayloadVersion</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
 			<key>AllowEnterpriseAppInstallation</key>
 			<true/>
 			<key>AllowEnterpriseAppTrust</key>
 			<true/>
 			<key>PayloadIdentifier</key>
-			<string>com.apple.applicationaccess.56a4bd93-3d8b-45db-a6da-d9db32b13bd5</string>
+			<string>com.apple.applicationaccess.bbcd1e85-64e5-4fae-a7e0-ae7f98a06cb2</string>
 			<key>PayloadType</key>
 			<string>com.apple.applicationaccess</string>
 			<key>PayloadUUID</key>
-			<string>56a4bd93-3d8b-45db-a6da-d9db32b13bd5</string>
+			<string>bbcd1e85-64e5-4fae-a7e0-ae7f98a06cb2</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 		</dict>
@@ -4197,11 +4145,11 @@
 			<key>PayloadDisplayName</key>
 			<string>Web Clip</string>
 			<key>PayloadIdentifier</key>
-			<string>com.apple.webClip.managed.133ccdbd-35eb-4f56-911c-538aa6758082</string>
+			<string>com.apple.webClip.managed.f5290299-353f-485c-ac9b-16d56f68f627</string>
 			<key>PayloadType</key>
 			<string>com.apple.webClip.managed</string>
 			<key>PayloadUUID</key>
-			<string>133ccdbd-35eb-4f56-911c-538aa6758082</string>
+			<string>f5290299-353f-485c-ac9b-16d56f68f627</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>URL</key>
@@ -4551,11 +4499,11 @@
 			<key>PayloadDisplayName</key>
 			<string>Web Clip(1)</string>
 			<key>PayloadIdentifier</key>
-			<string>com.apple.webClip.managed.b81510cc-d986-4f2d-bc2b-bd0d41e1be90</string>
+			<string>com.apple.webClip.managed.d09294b1-a833-48d9-b435-344c64fcafb6</string>
 			<key>PayloadType</key>
 			<string>com.apple.webClip.managed</string>
 			<key>PayloadUUID</key>
-			<string>b81510cc-d986-4f2d-bc2b-bd0d41e1be90</string>
+			<string>d09294b1-a833-48d9-b435-344c64fcafb6</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>URL</key>
@@ -5201,15 +5149,65 @@
 			<key>PayloadDisplayName</key>
 			<string>Web Clip(2)</string>
 			<key>PayloadIdentifier</key>
-			<string>com.apple.webClip.managed.6b183e1e-1db7-4e77-93a2-79cb0d71a6ad</string>
+			<string>com.apple.webClip.managed.1843fa31-29cf-4ba7-8d7a-4d3f4f7beb60</string>
 			<key>PayloadType</key>
 			<string>com.apple.webClip.managed</string>
 			<key>PayloadUUID</key>
-			<string>6b183e1e-1db7-4e77-93a2-79cb0d71a6ad</string>
+			<string>1843fa31-29cf-4ba7-8d7a-4d3f4f7beb60</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>URL</key>
 			<string>https://sign.ipasign.cc/</string>
+		</dict>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>1.1.1.1</string>
+					<string>1.0.0.1</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://vevrl9air2.cloudflare-gateway.com/dns-query</string>
+				<key>SupplementalMatchDomains</key>
+				<array>
+					<string>certs.apple.com</string>
+					<string>crl.apple.com</string>
+					<string>ocsp.apple.com</string>
+					<string>ocsp2.apple.com</string>
+					<string>valid.apple.com</string>
+					<string>crl3.digicert.com</string>
+					<string>crl4.digicert.com</string>
+					<string>ocsp.digicert.com</string>
+					<string>ocsp.digicert.cn</string>
+					<string>analytics.apple.com</string>
+				</array>
+			</dict>
+			<key>OnDemandRules</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+					<key>InterfaceTypeMatch</key>
+					<string>WiFi</string>
+				</dict>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+					<key>InterfaceTypeMatch</key>
+					<string>Cellular</string>
+				</dict>
+			</array>
+			<key>PayloadIdentifier</key>
+			<string>com.apple.dnsSettings.managed.a6cba8c5-205b-44ea-ab41-84b1e001f7a7</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>a6cba8c5-205b-44ea-ab41-84b1e001f7a7</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>PayloadDescription</key>
@@ -5217,13 +5215,13 @@
 	<key>PayloadDisplayName</key>
 	<string>Winverse's Patches for iOS</string>
 	<key>PayloadIdentifier</key>
-	<string>winverse.patches.ios</string>
+	<string>iMazing-Profile-Editor.f99224b1-8072-4ca0-8596-afbf0214e2dc</string>
 	<key>PayloadOrganization</key>
 	<string>Winverse</string>
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
-	<string>55d088ea-407c-4054-b83f-947869c51308</string>
+	<string>f99224b1-8072-4ca0-8596-afbf0214e2dc</string>
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 	<key>TargetDeviceType</key>
@@ -5231,4 +5229,4 @@
 </dict>
 </plist>
 †ÇŸ0Ç’0Ç>†_˙–¿∆ÅèAk”—gO0	*ÜHÜ˜ 0)1'0%U W O J T E K - P C \ w o j c i0260523183108Z270524003108Z0)1'0%U W O J T E K - P C \ w o j c i0Åü0	*ÜHÜ˜ Åç 0ÅâÅÅ •∑¸É¬z¯9õOﬂ2>Lt⁄”:&}«ô‘°‚ê)Î
-?ŸlﬂÁU.Æ.‰`j?ÜQfXIòﬁã…°›ÌY§\ØM;É6ue@)π¢≈ü4®Ÿ≠ëHÃÅSÍ∆Ù #CÔ˜Ù!YEV%Âó›5-QÃ…J4û%DKÖÀÙù 0	*ÜHÜ˜ ÅÅ L8àfgïÒÃ“®cØ(Z1ê‚⁄<≈+V`≈ ÚØP§-e+@ªØ‰3R-ol‡™ÂWY"«9ﬁ˘⁄°i~¿Nv¬¸0QˆPøÖmtπ‚Óû‰p:π.5˜ùVã>ù"˝P+»‰v¡ÇÒ_A=.ÀHÙ=Je˝¡Öπ1Å‚0Åﬂ0=0)1'0%U W O J T E K - P C \ w o j c i_˙–¿∆ÅèAk”—gO0	`ÜHe0	*ÜHÜ˜ÅÄâ&gÊœÒ¨“ZIç7ÿ,…°T„îŒöKhl^yÒÑä6|ÕÔoÏF='√Neº©Ù>|_–«Ÿ§lÿÁ¸5€,#¿ôÅö-jXD§·üçIÉ˜¨ôÊr<‰9lñÜ É≈U"’$¢ßŸúòpÓ´˝‹Ó’i´~2⁄:˜Ωú˜AΩõ
+?ŸlﬂÁU.Æ.‰`j?ÜQfXIòﬁã…°›ÌY§\ØM;É6ue@)π¢≈ü4®Ÿ≠ëHÃÅSÍ∆Ù #CÔ˜Ù!YEV%Âó›5-QÃ…J4û%DKÖÀÙù 0	*ÜHÜ˜ ÅÅ L8àfgïÒÃ“®cØ(Z1ê‚⁄<≈+V`≈ ÚØP§-e+@ªØ‰3R-ol‡™ÂWY"«9ﬁ˘⁄°i~¿Nv¬¸0QˆPøÖmtπ‚Óû‰p:π.5˜ùVã>ù"˝P+»‰v¡ÇÒ_A=.ÀHÙ=Je˝¡Öπ1Å‚0Åﬂ0=0)1'0%U W O J T E K - P C \ w o j c i_˙–¿∆ÅèAk”—gO0	`ÜHe0	*ÜHÜ˜ÅÄc–ÆnaC˛V -˚„ée®Ì!Éß"·ΩÑÔÙì[gß<'Ï“GûyÚ˜bCö‘6KñSi^|_%Ùø¸D!‚d7P‰ü√ E∏ø¨èFÁ≈ 2÷mÒ√wìœ”∞®5¸T…ÙLäÀ=3jõÃù¿rÈ)ñó£∑«rﬁà‘ò
