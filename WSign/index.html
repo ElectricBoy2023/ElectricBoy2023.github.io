@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f2f2f7">
+  <title>WSign</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@8/framework7-bundle.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="app">
+    <div class="view view-main">
+      <div class="page" data-name="home">
+        <div class="navbar">
+          <div class="navbar-bg"></div>
+          <div class="navbar-inner">
+            <div class="title">WSign</div>
+          </div>
+        </div>
+
+        <div class="toolbar toolbar-bottom tabbar">
+          <div class="toolbar-inner">
+            <a href="#signer" class="tab-link tab-link-active"><i class="icon f7-icons">signature</i><span>Signer</span></a>
+            <a href="#certificates" class="tab-link"><i class="icon f7-icons">checkmark_seal</i><span>Certificates</span></a>
+            <a href="#settings" class="tab-link"><i class="icon f7-icons">gear</i><span>Settings</span></a>
+          </div>
+        </div>
+
+        <div class="tabs safe-area-bottom">
+          <section id="signer" class="page-content tab tab-active">
+            <div class="block-title">Sign an IPA</div>
+            <div class="list inset ios-card">
+              <ul>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner"><div class="item-title item-label">IPA</div><div class="item-input-wrap"><input id="ipaFile" type="file" accept=".ipa,application/octet-stream"></div></div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner"><div class="item-title item-label">Certificate</div><div class="item-input-wrap"><select id="certificateSelect"><option value="">Choose a certificate…</option></select></div></div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner"><div class="item-title item-label">App ID <span class="optional">Optional</span></div><div class="item-input-wrap"><input id="bundleId" type="text" placeholder="Keep original"></div></div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner"><div class="item-title item-label">App name <span class="optional">Optional</span></div><div class="item-input-wrap"><input id="appName" type="text" placeholder="Keep original"></div></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="block">
+              <button id="signButton" class="button button-fill button-large">Sign &amp; Install</button>
+              <p class="hint">The IPA and selected certificate are sent only to the WSign server you configure.</p>
+            </div>
+            <div id="jobCard" class="block hidden">
+              <div class="card ios-card">
+                <div class="card-content card-content-padding">
+                  <div class="job-title" id="jobTitle">Signing…</div>
+                  <div class="progressbar" id="jobProgress"><span></span></div>
+                  <div id="jobStatus" class="hint">Uploading files…</div>
+                  <div class="grid grid-cols-2 grid-gap">
+                    <button id="downloadButton" class="button button-fill hidden">Download</button>
+                    <button id="discardButton" class="button color-red hidden">Discard</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="certificates" class="page-content tab">
+            <div class="block-title">Saved Certificates</div>
+            <div id="certList" class="list inset ios-card"><ul></ul></div>
+            <div class="block">
+              <button id="addCertificate" class="button button-fill button-large">Add Certificate</button>
+              <p class="hint">Certificates are kept in this browser's local storage. Your P12 password is never saved by WSign.</p>
+            </div>
+          </section>
+
+          <section id="settings" class="page-content tab">
+            <div class="block-title">Server</div>
+            <div class="list inset ios-card">
+              <ul>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner"><div class="item-title item-label">WSign server</div><div class="item-input-wrap"><input id="serverUrl" type="url" placeholder="https://your-server.example"></div></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="block"><button id="saveSettings" class="button button-fill">Save Server</button></div>
+            <div class="block-title">About</div>
+            <div class="block inset ios-card about">
+              <p><strong>WSign</strong> is a web client for a WSign-compatible self-hosted server.</p>
+              <p>The GitHub Pages site contains no signing keys or backend credentials.</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <input id="p12Picker" type="file" accept=".p12,application/x-pkcs12" hidden>
+  <input id="mobileprovisionPicker" type="file" accept=".mobileprovision,application/octet-stream" hidden>
+
+  <script src="https://cdn.jsdelivr.net/npm/framework7@8/framework7-bundle.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
