@@ -107,6 +107,42 @@ function closePlayer() {
   $('#projectFrame').src = 'about:blank';
 }
 
+async function downloadScrunch() {
+  const button = $('#downloadScrunch');
+  const status = $('#downloadStatus');
+  button.disabled = true;
+  status.textContent = 'Preparing Scrunch.zip...';
+  try {
+    const zip = new JSZip();
+    const files = [
+      ['index.html', 'index.html'],
+      ['styles.css', 'styles.css'],
+      ['app.js', 'app.js']
+    ];
+
+    for (const [path, name] of files) {
+      const response = await fetch(path, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`Couldn't download ${path} (HTTP ${response.status})`);
+      zip.file(name, await response.text());
+    }
+
+    const blob = await zip.generateAsync({ type: 'blob' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Scrunch.zip';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    status.textContent = 'Scrunch.zip is ready! 🍊';
+  } catch (e) {
+    status.textContent = `Download failed: ${e.message}`;
+  } finally {
+    button.disabled = false;
+  }
+}
+
 $('#searchForm').addEventListener('submit', e => { e.preventDefault(); loadUser($('#usernameInput').value); });
 $('#loadMore').addEventListener('click', () => loadProjects().catch(e => setError(e.message)));
 $('#projectGrid').addEventListener('click', e => {
@@ -114,6 +150,7 @@ $('#projectGrid').addEventListener('click', e => {
   if (!button) return;
   openPlayer(Number(button.dataset.id), button.dataset.title);
 });
+$('#downloadScrunch').addEventListener('click', downloadScrunch);
 $('#closePlayer').addEventListener('click', closePlayer);
 $('#closeBackdrop').addEventListener('click', closePlayer);
 document.querySelectorAll('.player-toggle').forEach(b => b.addEventListener('click', () => setPlayer(b.dataset.player)));
