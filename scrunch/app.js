@@ -96,8 +96,8 @@ function setPlayer(type) {
   if (!state.currentProject) return;
   const id = state.currentProject.id;
   $('#projectFrame').src = type === 'turbowarp'
-    ? `https://turbowarp.org/${id}/iframe`
-    : `https://scratch.mit.edu/projects/${id}/iframe`;
+    ? `https://turbowarp.org/${id}/embed`
+    : `https://scratch.mit.edu/projects/${id}/embed`;
   document.querySelectorAll('.player-toggle').forEach(b => b.classList.toggle('active', b.dataset.player === type));
 }
 
