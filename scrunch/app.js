@@ -47,11 +47,7 @@ function renderProfile(user, messageCount) {
   $('#status').textContent = p.status || '';
   $('#bio').textContent = p.bio || '';
   $('#scratchProfile').href = `https://scratch.mit.edu/users/${encodeURIComponent(user.username)}/`;
-  const facts = [
-    `🆔 ${user.id}`,
-    `🌍 ${p.country || 'Unknown country'}`,
-    user.scratchteam ? '🛡️ Scratch Team' : '👤 Scratcher'
-  ];
+  const facts = [`🆔 ${user.id}`, `🌍 ${p.country || 'Unknown country'}`, user.scratchteam ? '🛡️ Scratch Team' : '👤 Scratcher'];
   if (messageCount?.count != null) facts.push(`📬 ${messageCount.count} messages`);
   $('#facts').innerHTML = facts.map(x => `<span class="fact">${esc(x)}</span>`).join('');
 }
@@ -72,7 +68,7 @@ function renderProjects() {
         <h4>${esc(p.title)}</h4>
         <div class="stats">👁 ${p.stats?.views ?? 0} &nbsp; ❤️ ${p.stats?.loves ?? 0} &nbsp; ⭐ ${p.stats?.favorites ?? 0} &nbsp; 🔀 ${p.stats?.remixes ?? 0}</div>
         <div class="stats">Shared ${esc(formatDate(p.history?.shared))}</div>
-        <button class="ghost" onclick="openPlayer(${p.id}, ${JSON.stringify(p.title)})">▶ Play</button>
+        <button class="ghost play-project" data-id="${esc(p.id)}" data-title="${esc(p.title)}">▶ Play</button>
       </div>
     </article>`).join('');
 }
@@ -113,6 +109,11 @@ function closePlayer() {
 
 $('#searchForm').addEventListener('submit', e => { e.preventDefault(); loadUser($('#usernameInput').value); });
 $('#loadMore').addEventListener('click', () => loadProjects().catch(e => setError(e.message)));
+$('#projectGrid').addEventListener('click', e => {
+  const button = e.target.closest('.play-project');
+  if (!button) return;
+  openPlayer(Number(button.dataset.id), button.dataset.title);
+});
 $('#closePlayer').addEventListener('click', closePlayer);
 $('#closeBackdrop').addEventListener('click', closePlayer);
 document.querySelectorAll('.player-toggle').forEach(b => b.addEventListener('click', () => setPlayer(b.dataset.player)));
