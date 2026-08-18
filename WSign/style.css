@@ -1,1 +1,114 @@
-html,body,#app{height:100%;margin:0}.page{background:var(--f7-page-bg-color)}.page-content{padding-bottom:calc(var(--f7-toolbar-height) + var(--f7-safe-area-bottom))}.block-title{letter-spacing:.01em}.list.inset-ios{margin-left:16px;margin-right:16px;border-radius:12px;overflow:hidden}.block-strong-ios{margin-left:16px;margin-right:16px;border-radius:12px}.text-small{font-size:13px;line-height:18px;margin-top:10px}.hidden{display:none!important}.job-title{font-size:17px;font-weight:600;margin-bottom:12px}.grid{margin-top:14px}.about p{margin:8px 0;line-height:21px}@media(min-width:768px){.page-content{max-width:720px;margin:0 auto}.navbar-inner{max-width:720px;margin:0 auto}.toolbar-inner{max-width:620px;margin:0 auto}.block-title{max-width:688px;margin-left:auto;margin-right:auto}.list.inset-ios,.block-strong-ios{max-width:688px;margin-left:auto;margin-right:auto}}
+:root {
+  --f7-theme-color: #007aff;
+  --f7-theme-color-rgb: 0, 122, 255;
+  --f7-page-bg-color: #f2f2f7;
+}
+
+.ios {
+  --f7-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF UI Text", system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f7-text-color: #000;
+  --f7-page-bg-color: #f2f2f7;
+  --f7-bars-bg-color: rgba(249, 249, 249, 0.82);
+  --f7-bars-bg-color-rgb: 249, 249, 249;
+  --f7-bars-border-color: rgba(60, 60, 67, 0.29);
+  --f7-navbar-height: 44px;
+  --f7-navbar-font-size: 17px;
+  --f7-navbar-title-font-weight: 600;
+  --f7-toolbar-height: 50px;
+  --f7-tabbar-icons-height: 50px;
+  --f7-tabbar-icon-size: 28px;
+  --f7-tabbar-label-font-size: 12px;
+  --f7-tabbar-label-font-weight: 500;
+  --f7-tabbar-link-active-color: var(--f7-theme-color);
+  --f7-tabbar-link-inactive-color: rgba(0, 0, 0, 0.4);
+  --f7-list-inset-side-margin: 16px;
+  --f7-list-item-min-height: 44px;
+  --f7-list-item-padding-horizontal: 16px;
+  --f7-input-height: 44px;
+  --f7-input-font-size: 17px;
+  --f7-input-placeholder-color: #a9a9a9;
+  --f7-button-height: 44px;
+  --f7-button-font-size: 17px;
+  --f7-button-font-weight: 600;
+  --f7-button-border-radius: 12px;
+  --f7-progressbar-height: 4px;
+  --f7-progressbar-border-radius: 4px;
+}
+
+.ios .page {
+  background: var(--f7-page-bg-color);
+}
+
+.ios .navbar-bg,
+.ios .toolbar {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+.ios .navbar-bg {
+  background-color: var(--f7-bars-bg-color);
+}
+
+.ios .toolbar {
+  background-color: var(--f7-bars-bg-color);
+}
+
+.ios .page-content {
+  padding-bottom: calc(var(--f7-toolbar-height) + var(--f7-safe-area-bottom) + 16px);
+}
+
+.ios .block-title {
+  text-transform: none;
+  font-size: 13px;
+  line-height: 18px;
+  color: #6d6d72;
+}
+
+.ios .list.inset-ios,
+.ios .block-strong-ios,
+.ios .card-outline-ios {
+  --f7-list-inset-border-radius: 12px;
+}
+
+.ios .list input[type="file"] {
+  font-size: 15px;
+}
+
+.ios .button-fill {
+  --f7-button-bg-color: var(--f7-theme-color);
+  --f7-button-text-color: #fff;
+}
+
+.ios .button-tonal {
+  --f7-button-bg-color: rgba(var(--f7-theme-color-rgb), 0.12);
+}
+
+.ios .button.color-red {
+  --f7-button-text-color: #ff3b30;
+}
+
+.ios .job-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.ios .text-small {
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.display-none {
+  display: none !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ios {
+    --f7-page-bg-color: #000;
+    --f7-bars-bg-color: rgba(28, 28, 30, 0.82);
+    --f7-bars-bg-color-rgb: 28, 28, 30;
+    --f7-bars-border-color: rgba(84, 84, 88, 0.65);
+    --f7-text-color: #fff;
+    --f7-tabbar-link-inactive-color: rgba(255, 255, 255, 0.54);
+  }
+}
