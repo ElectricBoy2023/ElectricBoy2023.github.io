@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrunch</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/scrunch/">🍊 Scrunch</a>
+    <form id="searchForm" class="search">
+      <input id="usernameInput" autocomplete="off" placeholder="Scratch username..." aria-label="Scratch username">
+      <button>Search</button>
+    </form>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div>
+        <p class="eyebrow">A different way to browse Scratch</p>
+        <h1>Scratch, but <span>Scrunched.</span></h1>
+        <p class="sub">Public Scratch data, project stats, profiles and a switchable Scratch / TurboWarp player.</p>
+      </div>
+      <div class="hero-card">🧃<br><small>powered by public APIs</small></div>
+    </section>
+
+    <section id="loading" class="state hidden">Loading...</section>
+    <section id="error" class="state error hidden"></section>
+
+    <section id="profileView" class="hidden">
+      <div class="profile-card">
+        <img id="avatar" class="avatar" alt="Avatar">
+        <div class="profile-main">
+          <div class="profile-title">
+            <div>
+              <h2 id="displayName"></h2>
+              <p id="joinDate" class="muted"></p>
+            </div>
+            <a id="scratchProfile" class="ghost" target="_blank" rel="noopener">Open Scratch ↗</a>
+          </div>
+          <p id="status" class="status"></p>
+          <p id="bio" class="bio"></p>
+          <div id="facts" class="facts"></div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="projects">Projects</button>
+        <button class="tab" data-tab="followers">Followers</button>
+        <button class="tab" data-tab="following">Following</button>
+      </div>
+
+      <div id="projectsTab" class="tab-content">
+        <div class="section-heading">
+          <div>
+            <h3>Projects</h3>
+            <p class="muted">Public projects returned by the Scratch API</p>
+          </div>
+          <button id="loadMore" class="ghost">Load more</button>
+        </div>
+        <div id="projectGrid" class="grid"></div>
+      </div>
+
+      <div id="followersTab" class="tab-content hidden">
+        <div class="section-heading"><h3>Followers</h3></div>
+        <div id="followersGrid" class="user-grid"></div>
+      </div>
+
+      <div id="followingTab" class="tab-content hidden">
+        <div class="section-heading"><h3>Following</h3></div>
+        <div id="followingGrid" class="user-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="playerModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop" id="closeBackdrop"></div>
+    <div class="player-window">
+      <div class="player-head">
+        <div>
+          <strong id="playerTitle">Project</strong>
+          <span id="playerAuthor" class="muted"></span>
+        </div>
+        <button id="closePlayer" class="close">×</button>
+      </div>
+      <div class="player-controls">
+        <button class="player-toggle active" data-player="scratch">🟠 Scratch</button>
+        <button class="player-toggle" data-player="turbowarp">🟣 TurboWarp</button>
+        <a id="projectLink" class="ghost" target="_blank" rel="noopener">Project ↗</a>
+      </div>
+      <div class="iframe-wrap">
+        <iframe id="projectFrame" title="Scratch project player" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <footer>Scrunch • a fan-made Scratch frontend • public data only</footer>
+  <script src="app.js"></script>
+</body>
+</html>
