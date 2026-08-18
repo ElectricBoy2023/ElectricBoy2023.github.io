@@ -21,6 +21,8 @@
         <p class="eyebrow">A different way to browse Scratch</p>
         <h1>Scratch, but <span>Scrunched.</span></h1>
         <p class="sub">Public Scratch data, project stats, profiles and a switchable Scratch / TurboWarp player.</p>
+        <button id="downloadScrunch" class="download-button">⬇️ Download Scrunch</button>
+        <p id="downloadStatus" class="muted download-status" aria-live="polite"></p>
       </div>
       <div class="hero-card">🧃<br><small>powered by public APIs</small></div>
     </section>
@@ -96,6 +98,7 @@
   </div>
 
   <footer>Scrunch • a fan-made Scratch frontend • public data only</footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
