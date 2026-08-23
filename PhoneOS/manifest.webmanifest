@@ -1,0 +1,16 @@
+{
+  "name": "VerseOS",
+  "short_name": "VerseOS",
+  "description": "Touch-first web phone OS by Winverse",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#090a0e",
+  "theme_color": "#101116",
+  "categories": ["utilities", "productivity"],
+  "icons": [
+    {"src":"icons/icon-192.svg","sizes":"192x192","type":"image/svg+xml","purpose":"any maskable"},
+    {"src":"icons/icon-512.svg","sizes":"512x512","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
