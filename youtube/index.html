@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Frontends - Winverse</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f1f1f1;color:#333;font-family:Arial,Helvetica,sans-serif;font-size:13px}
+a{cursor:pointer}
+.topbar{min-height:70px;background:#fff;border-bottom:1px solid #ccc;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.topbar-inner{width:980px;max-width:94%;margin:auto;min-height:70px;display:flex;align-items:center}
+.logo{width:170px;margin-right:25px;flex-shrink:0}.logo img{display:block;max-width:100px;height:auto}.logo i{font-size:11px;color:#777}
+.search{display:flex;width:430px}.search input{flex:1;height:32px;border:1px solid #aaa;padding:6px 9px;font-size:14px;box-shadow:inset 0 1px 2px #ddd}.search button{width:70px;border:1px solid #999;background:linear-gradient(#fff,#ddd);cursor:pointer;font-weight:bold;color:#555}.search button:hover{background:linear-gradient(#fff,#ccc)}
+.account{margin-left:auto;color:#666}.account a{color:#167ac6;text-decoration:none}.account a:hover{text-decoration:underline}
+.page{width:980px;max-width:94%;margin:18px auto}.notice{background:#fff;border:1px solid #ccc;padding:12px;margin-bottom:15px;box-shadow:0 1px 1px rgba(0,0,0,.05)}.notice strong{color:#cc181e}
+.columns{display:flex;gap:18px}.sidebar{width:190px;flex-shrink:0}.sidebox{background:#fff;border:1px solid #ccc;margin-bottom:15px}.side-title{background:#eee;border-bottom:1px solid #ccc;padding:9px;font-weight:bold;color:#444}.sidebox a{display:block;padding:8px 10px;color:#167ac6;text-decoration:none;border-bottom:1px solid #eee}.sidebox a:hover{background:#f5f5f5;text-decoration:underline}.sidebox a.active{background:#e8e8e8;color:#333;font-weight:bold}
+.content{flex:1;min-width:0}.page-section{display:none}.page-section.active{display:block}.section{background:#fff;border:1px solid #ccc;margin-bottom:18px}.section-header{background:linear-gradient(#fafafa,#e8e8e8);border-bottom:1px solid #ccc;padding:10px 13px;font-size:17px;font-weight:bold;color:#444}.section-header small{float:right;font-size:11px;font-weight:normal;color:#888;margin-top:4px}
+.instance{padding:13px;border-bottom:1px solid #eee;min-height:75px}.instance:last-child{border-bottom:0}.instance:hover{background:#fafafa}.instance-name{font-size:16px;font-weight:bold;color:#167ac6;text-decoration:none}.instance-name:hover{text-decoration:underline}.instance-url{color:#999;font-family:Consolas,monospace;font-size:11px;margin-top:4px}.description{margin-top:7px;color:#555}.badge,.status{display:inline-block;padding:2px 6px;margin-left:7px;font-size:10px;color:#fff;border-radius:2px;vertical-align:middle}.badge.old{background:#cc181e}.badge.invidious{background:#8b4bb7}.badge.piped{background:#4285c5}.badge.other{background:#666}.badge.app{background:#6b8e23}.badge.classic{background:#b36b00}.badge.project{background:#555}.status.working{background:#5b8c2a}.status.warning{background:#c27c00}.status.unknown{background:#777}
+#searchResults{display:none}#searchResults.active{display:block}.no-results{padding:20px;text-align:center;color:#777}.count{font-size:11px;color:#888;font-weight:normal}
+footer{width:980px;max-width:94%;margin:30px auto;padding:18px 0;border-top:1px solid #ccc;color:#888;font-size:11px}footer a{color:#167ac6;text-decoration:none}
+@media(max-width:700px){.topbar-inner{flex-wrap:wrap;padding:10px 0}.topbar{height:auto}.logo{width:auto;margin-right:auto}.search{width:100%;order:3;margin-top:10px}.account{display:none}.columns{flex-direction:column}.sidebar{width:100%}.section-header small{display:none}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+<div class="logo"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Logo_of_YouTube_%282011-2013%29.svg/1920px-Logo_of_YouTube_%282011-2013%29.svg.png" width="100" height="39" alt="YouTube"><i>Alternative Frontends</i></div>
+<form class="search" onsubmit="searchInstances(event)"><input id="searchBox" type="text" placeholder="Search"><button type="submit">Search</button></form>
+<div class="account"><a href="#home" onclick="showPage('home');return false">Home</a> &nbsp;|&nbsp; <a href="https://github.com/ElectricBoy2023/ElectricBoy2023.github.io" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+</div></header>
+<main class="page">
+<div class="notice"><strong>Welcome!</strong> This is Winverse's directory of alternative YouTube frontends.<br><span style="color:#777">Last manually updated: 2026</span></div>
+<div class="columns">
+<aside class="sidebar">
+<div class="sidebox"><div class="side-title">Browse</div>
+<a onclick="showPage('home')" id="nav-home">Home</a><a onclick="showPage('all')" id="nav-all">All Frontends</a><a onclick="showPage('yt2009')" id="nav-yt2009">YT2009</a><a onclick="showPage('invidious')" id="nav-invidious">Invidious</a><a onclick="showPage('piped')" id="nav-piped">Piped</a><a onclick="showPage('other')" id="nav-other">Other Web</a><a onclick="showPage('apps')" id="nav-apps">Apps &amp; Clients</a>
+</div>
+<div class="sidebox"><div class="side-title">About</div><a onclick="showPage('about')" id="nav-about">What is this?</a><a href="https://github.com/ElectricBoy2023/ElectricBoy2023.github.io" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+</aside>
+<section class="content">
+<div class="page-section active" id="page-home"><div class="section"><div class="section-header">YouTube Frontends <small>Welcome</small></div>
+<div class="instance"><b>Welcome to the directory!</b><div class="description">Browse alternative YouTube interfaces, instances and clients by category.</div></div>
+<div class="instance"><a class="instance-name" onclick="showPage('yt2009')">YT2009</a><span class="badge old">CLASSIC</span><div class="description">Classic YouTube recreations and YT2009 instances.</div></div>
+<div class="instance"><a class="instance-name" onclick="showPage('invidious')">Invidious</a><span class="badge invidious">FRONTEND</span><div class="description">Privacy-oriented YouTube frontend with multiple public instances.</div></div>
+<div class="instance"><a class="instance-name" onclick="showPage('piped')">Piped</a><span class="badge piped">FRONTEND</span><div class="description">Alternative YouTube frontend focused on privacy and lightweight browsing.</div></div>
+<div class="instance"><a class="instance-name" onclick="showPage('other')">Other Web Frontends</a><span class="badge other">WEB</span><div class="description">Other alternative YouTube web projects.</div></div>
+<div class="instance"><a class="instance-name" onclick="showPage('apps')">Apps &amp; Clients</a><span class="badge app">APPS</span><div class="description">Desktop, Android, Linux and other YouTube clients.</div></div>
+</div></div>
+<div class="page-section" id="page-yt2009"></div>
+<div class="page-section" id="page-invidious"></div>
+<div class="page-section" id="page-piped"></div>
+<div class="page-section" id="page-other"></div>
+<div class="page-section" id="page-apps"></div>
+<div class="page-section" id="page-all"></div>
+<div class="page-section" id="page-about"><div class="section"><div class="section-header">About this directory <small>Winverse</small></div>
+<div class="instance"><b>What is this?</b><div class="description">This website is a directory of alternative interfaces, instances and clients for YouTube.<br><br>The design is inspired by the classic 2011–2013 YouTube website.<br><br>The directory is generated from one JavaScript database, so entries only need to be added once.</div></div>
+<div class="instance"><b>Important</b><div class="description">Public instances can disappear, change domains, or stop working without warning. Links are community resources rather than permanent guarantees.</div></div>
+<div class="instance"><b>Why though?</b><div class="description"><b>1. Schools can block YouTube, even educational content.</b> Using these does not mean you are allowed to bypass a school's rules.<br><br><b>2. Some people don't like ads or tracking.</b> Communities have built many alternative frontends for that reason.<br><br><b>3. Some people want nostalgia.</b> Projects such as YT2009 recreate the look and feel of older YouTube.</div></div>
+</div></div>
+<div id="searchResults"><div class="section"><div class="section-header">Search results <small id="resultCount"></small></div><div id="resultsContainer"></div></div></div>
+</section></div></main>
+<footer>Winverse's YouTube Frontend Directory &nbsp;•&nbsp; Inspired by the classic YouTube web design era.<br><br>Some public instances may go offline or change domains.</footer>
+<script>
+const frontends = [
+{name:'YT2009',category:'yt2009',url:'https://yt2009.friko.ovh/',badge:'2009',badgeClass:'old',status:'WORKING',statusClass:'working',urlText:'yt2009.friko.ovh',description:'Recommended YT2009 instance with good performance and no ads.'},
+{name:'TrueHosting Instance',category:'yt2009',url:'https://yt2009.truehosting.net/',badge:'2009',badgeClass:'old',status:'SLOW',statusClass:'warning',urlText:'yt2009.truehosting.net',description:'Functional YT2009 instance. Can be slow and may contain ads.'},
+{name:'IP Address Instance',category:'yt2009',url:'http://45.132.96.40:3759/',badge:'2009',badgeClass:'old',status:'IP',statusClass:'unknown',urlText:'45.132.96.40:3759',description:'Direct IP address for a YT2009 server.'},
+{name:'IP Address Instance #2',category:'yt2009',url:'http://176.100.39.186:8888/',badge:'2009',badgeClass:'old',status:'IP',statusClass:'unknown',urlText:'176.100.39.186:8888',description:'Direct IP address for a YT2009 server.'},
+{name:'Invidious',category:'invidious',url:'https://invidious.io/',badge:'PROJECT',badgeClass:'invidious',urlText:'invidious.io',description:'Main Invidious project website.'},
+{name:'Invidious GitHub',category:'invidious',url:'https://github.com/iv-org/invidious',badge:'SOURCE',badgeClass:'project',urlText:'github.com/iv-org/invidious',description:'Source code and development information for Invidious.'},
+{name:'inv.nadeko.net',category:'invidious',url:'https://inv.nadeko.net/',badge:'INSTANCE',badgeClass:'invidious',urlText:'inv.nadeko.net',description:'Public Invidious instance.'},
+{name:'invidious.nerdvpn.de',category:'invidious',url:'https://invidious.nerdvpn.de/',badge:'INSTANCE',badgeClass:'invidious',urlText:'invidious.nerdvpn.de',description:'Public Invidious instance.'},
+{name:'yt.artemislena.eu',category:'invidious',url:'https://yt.artemislena.eu/',badge:'INSTANCE',badgeClass:'invidious',urlText:'yt.artemislena.eu',description:'Public Invidious instance.'},
+{name:'inv.tux.pizza',category:'invidious',url:'https://inv.tux.pizza/',badge:'INSTANCE',badgeClass:'invidious',urlText:'inv.tux.pizza',description:'Public Invidious instance.'},
+{name:'invidious.private.coffee',category:'invidious',url:'https://invidious.private.coffee/',badge:'INSTANCE',badgeClass:'invidious',urlText:'invidious.private.coffee',description:'Public Invidious instance.'},
+{name:'yt.drgnz.club',category:'invidious',url:'https://yt.drgnz.club/',badge:'INSTANCE',badgeClass:'invidious',urlText:'yt.drgnz.club',description:'Public Invidious instance.'},
+{name:'invidious.protokolla.fi',category:'invidious',url:'https://invidious.protokolla.fi/',badge:'INSTANCE',badgeClass:'invidious',urlText:'invidious.protokolla.fi',description:'Public Invidious instance.'},
+{name:'Piped',category:'piped',url:'https://piped.video/',badge:'WEB',badgeClass:'piped',urlText:'piped.video',description:"Piped's main web frontend."},
+{name:'Piped GitHub',category:'piped',url:'https://github.com/TeamPiped/Piped',badge:'SOURCE',badgeClass:'project',urlText:'github.com/TeamPiped/Piped',description:'Piped source code and project information.'},
+{name:'Piped Frontend',category:'piped',url:'https://github.com/TeamPiped/Piped-Frontend',badge:'SOURCE',badgeClass:'project',urlText:'github.com/TeamPiped/Piped-Frontend',description:'Frontend source code for Piped.'},
+{name:'PokeTube',category:'other',url:'https://poketube.fun/',badge:'WEB',badgeClass:'other',urlText:'poketube.fun',description:'Alternative YouTube frontend.'},
+{name:'Invuedious',category:'other',url:'https://bocchilorenzo.github.io/invuedious/',badge:'WEB',badgeClass:'other',urlText:'bocchilorenzo.github.io/invuedious',description:'Vue-based interface for Invidious.'},
+{name:'CloudTube',category:'other',url:'https://github.com/Venipa/CloudTube',badge:'PROJECT',badgeClass:'other',urlText:'github.com/Venipa/CloudTube',description:'Alternative YouTube frontend project.'},
+{name:'FreeTube',category:'apps',url:'https://freetubeapp.io/',badge:'DESKTOP',badgeClass:'app',urlText:'freetubeapp.io',description:'Open-source desktop YouTube client for Windows, macOS and Linux.'},
+{name:'NewPipe',category:'apps',url:'https://github.com/TeamNewPipe/NewPipe',badge:'ANDROID',badgeClass:'app',urlText:'github.com/TeamNewPipe/NewPipe',description:'Lightweight open-source Android YouTube client.'},
+{name:'LibreTube',category:'apps',url:'https://github.com/libre-tube/LibreTube',badge:'ANDROID',badgeClass:'app',urlText:'github.com/libre-tube/LibreTube',description:'Open-source Android client built around Piped.'},
+{name:'Yattee',category:'apps',url:'https://github.com/yattee/yattee',badge:'APPLE',badgeClass:'app',urlText:'github.com/yattee/yattee',description:'Open-source video client for Apple platforms.'},
+{name:'PlasmaTube',category:'apps',url:'https://apps.kde.org/plasmatube/',badge:'LINUX',badgeClass:'app',urlText:'apps.kde.org/plasmatube',description:'KDE video client designed for Plasma and other Linux desktops.'}
+];
+const meta={yt2009:['YT2009','Classic YouTube'],invidious:['Invidious','Alternative YouTube frontend'],piped:['Piped','Alternative YouTube frontend'],other:['Other Web Frontends','More projects'],apps:['Apps & Clients','Desktop / mobile / Linux']};
+function esc(value){const d=document.createElement('div');d.textContent=value;return d.innerHTML}
+function renderInstance(item){return `<div class="instance"><a class="instance-name" href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">${esc(item.name)}</a><span class="badge ${esc(item.badgeClass||'other')}">${esc(item.badge)}</span>${item.status?`<span class="status ${esc(item.statusClass||'unknown')}">${esc(item.status)}</span>`:''}<div class="instance-url">${esc(item.urlText||item.url)}</div><div class="description">${esc(item.description)}</div></div>`}
+function renderCategory(category){const box=document.getElementById('page-'+category);const items=frontends.filter(x=>x.category===category);const title=meta[category][0],sub=meta[category][1];box.innerHTML=`<div class="section"><div class="section-header">${esc(title)} <small>${esc(sub)} <span class="count">(${items.length})</span></small></div>${items.map(renderInstance).join('')}</div>`}
+function renderAll(){const box=document.getElementById('page-all');box.innerHTML=`<div class="section"><div class="section-header">All Frontends <small>Directory index (${frontends.length})</small></div>${frontends.map(renderInstance).join('')}</div>`}
+function setActiveNav(page){document.querySelectorAll('.sidebox a').forEach(a=>a.classList.remove('active'));const nav=document.getElementById('nav-'+page);if(nav)nav.classList.add('active')}
+function showPage(page,writeHash=true){document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));const target=document.getElementById('page-'+page);if(target)target.classList.add('active');document.getElementById('searchResults').classList.remove('active');setActiveNav(page);if(writeHash)location.hash=page;window.scrollTo({top:0,behavior:'smooth'})}
+function searchInstances(event){if(event)event.preventDefault();const query=document.getElementById('searchBox').value.toLowerCase().trim();if(!query){showPage('home');return}document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));document.getElementById('searchResults').classList.add('active');setActiveNav('');const matches=frontends.filter(x=>(x.name+' '+x.category+' '+x.badge+' '+x.urlText+' '+x.description).toLowerCase().includes(query));const container=document.getElementById('resultsContainer');container.innerHTML=matches.length?matches.map(renderInstance).join(''):`<div class="no-results">No frontends found for <b>${esc(query)}</b>.</div>`;document.getElementById('resultCount').textContent=matches.length+' result'+(matches.length===1?'':'s');location.hash='search='+encodeURIComponent(query);window.scrollTo({top:0,behavior:'smooth'})}
+function restorePage(){const hash=location.hash.substring(1);if(hash.startsWith('search=')){const query=decodeURIComponent(hash.substring(7));document.getElementById('searchBox').value=query;searchInstances(null);return}const valid=['home','all','yt2009','invidious','piped','other','apps','about'];showPage(valid.includes(hash)?hash:'home',false)}
+Object.keys(meta).forEach(renderCategory);renderAll();window.addEventListener('hashchange',restorePage);window.addEventListener('load',restorePage);
+</script>
+</body>
+</html>
