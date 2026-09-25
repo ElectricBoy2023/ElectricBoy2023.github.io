@@ -1,0 +1,21 @@
+[
+  {
+    "name": "F-Droid",
+    "type": "fdroid",
+    "url": "https://f-droid.org/repo/index-v2.json"
+  },
+  {
+    "name": "GitHub Releases",
+    "type": "github",
+    "repo": "F-Droid/F-DroidClient",
+    "appName": "F-Droid",
+    "releases": 3
+  },
+  {
+    "name": "GitHub Releases",
+    "type": "github",
+    "repo": "ImranR98/Obtainium",
+    "appName": "Obtainium",
+    "releases": 3
+  }
+]
