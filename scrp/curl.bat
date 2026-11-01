@@ -12,11 +12,6 @@ echo wait > test
 if EXIST "test" set "ccd=%cd%"
 del test /s /q
 
-cd %userprofile%/Documents
-echo wait > test
-if EXIST "test" set "ccd=%cd%"
-del test /s /q
-
 if "%ccd%"=="nothing" (
   echo No paths were valid, please wait for a bugfix or run the terminal with admin privileges.
   pause
